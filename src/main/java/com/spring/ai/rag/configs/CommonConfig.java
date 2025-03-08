@@ -61,6 +61,7 @@ public class CommonConfig {
     public VectorStore vectorStore(RestClient restClient, EmbeddingModel embeddingModel) {
         ElasticsearchVectorStoreOptions options = new ElasticsearchVectorStoreOptions();
         options.setIndexName(indexName);    // Optional: defaults to "spring-ai-document-index"
+        options.setDimensions(embeddingModel.dimensions());
 
         return ElasticsearchVectorStore.builder(restClient, embeddingModel)
                 .options(options)                     // Optional: use custom options
